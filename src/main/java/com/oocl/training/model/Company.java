@@ -1,9 +1,13 @@
-package com.oocl.training.controller;
+package com.oocl.training.model;
+
+import com.oocl.training.model.Employees;
 
 import java.util.List;
 
 public class Company {
     private int id;
+    private String name;
+    private List<Employees> employees;
 
     public int getId() {
         return id;
@@ -29,12 +33,15 @@ public class Company {
         this.employees = employees;
     }
 
-    private String name;
-    private List<Employees> employees;
 
     public Company(int id, String name, List<Employees> employees) {
         this.id = id;
         this.name = name;
         this.employees = employees;
+    }
+
+    public Company(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 }

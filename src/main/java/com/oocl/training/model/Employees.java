@@ -1,6 +1,11 @@
-package com.oocl.training.controller;
+package com.oocl.training.model;
 
 public class Employees {
+    private int id;
+    private String name;
+    private int age;
+    private String gender;
+    private double salary;
     public int getId() {
         return id;
     }
@@ -41,11 +46,19 @@ public class Employees {
         this.salary = salary;
     }
 
-    private int id;
-    private String name;
-    private int age;
-    private String gender;
-    private double salary;
+
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    private boolean active;
+
+
 
     public Employees(int id, String name, int age, String gender, double salary) {
         this.id = id;
@@ -53,5 +66,6 @@ public class Employees {
         this.age = age;
         this.gender = gender;
         this.salary = salary;
+        this.active = true;
     }
 }
