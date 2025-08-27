@@ -13,8 +13,8 @@ public record EmployeesController(EmployeeService employeeService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void addEmployee(@RequestBody Employees employee) throws IllegalAccessException {
-        employeeService.addEmployee(employee);
+    public Employees addEmployee(@RequestBody Employees employee) throws IllegalAccessException {
+        return employeeService.addEmployee(employee);
     }
 
     @GetMapping

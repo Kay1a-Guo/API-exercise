@@ -20,10 +20,11 @@ public class EmployeeRepository {
             5, new Employees(5, "Michael Jones", 40, "MALE", 7000.0)
     ));
 
-    public void addEmployee(Employees employee) {
+    public Employees addEmployee(Employees employee) {
         int id = employees.size() + 1;
         employee.setId(id);
         employees.put(id, employee);
+        return employee;
     }
 
     public List<Employees> getAllEmployees() {

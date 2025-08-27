@@ -11,13 +11,14 @@ import java.util.List;
 @Service
 public record EmployeeService(EmployeeRepository employeeRepository) {
 
-    public void addEmployee(Employees employee) {
+    public Employees addEmployee(Employees employee) {
         if (employee.getAge() < 18 || employee.getAge() > 65)
             throw new InvalidEmployeeException("Employee age must be between 18 and 65.");
         if (employee.getAge() > 30 && employee.getSalary() < 20000.0)
             throw new InvalidEmployeeException("Employee older than 30 must have a salary of at least 20000.");
         employeeRepository.addEmployee(employee);
 
+        return employee;
     }
 
     public List<Employees> getAllEmployees() {
@@ -54,7 +55,6 @@ public record EmployeeService(EmployeeRepository employeeRepository) {
 
         } else {
             employeeRepository.updateEmployee(id, updatedEmployee);
-
         }
     }
 
