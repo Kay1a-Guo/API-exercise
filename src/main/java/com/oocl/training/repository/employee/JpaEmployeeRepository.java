@@ -1,4 +1,4 @@
-package com.oocl.training.repository;
+package com.oocl.training.repository.employee;
 
 import com.oocl.training.model.Employees;
 import org.springframework.data.jpa.repository.JpaRepository;
