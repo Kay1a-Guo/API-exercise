@@ -2,7 +2,8 @@ package com.oocl.training.service;
 
 import com.oocl.training.exception.InvalidEmployeeException;
 import com.oocl.training.model.Employees;
-import com.oocl.training.repository.EmployeeMemoryRepository;
+import com.oocl.training.repository.EmployeeDbRepository;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class EmployeeServiceTest {
 
     @Mock
-    private EmployeeMemoryRepository employeeMemoryRepository;
+    private EmployeeDbRepository employeeMemoryRepository;
 
     @InjectMocks
     private EmployeeService employeeService;

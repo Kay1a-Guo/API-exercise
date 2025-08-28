@@ -1,6 +1,7 @@
 package com.oocl.training.Integtation;
 
 import com.oocl.training.model.Employees;
+import com.oocl.training.repository.EmployeeDbRepository;
 import com.oocl.training.repository.EmployeeMemoryRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ public class EmployeeTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private EmployeeMemoryRepository employeeMemoryRepository;
+    private EmployeeDbRepository employeeMemoryRepository;
 
     @BeforeEach
     public void setUp() {
