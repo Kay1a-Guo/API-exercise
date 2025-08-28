@@ -14,6 +14,7 @@ public class Employees {
     private int age;
     private String gender;
     private double salary;
+
     public int getId() {
         return id;
     }
@@ -75,5 +76,7 @@ public class Employees {
         this.gender = gender;
         this.salary = salary;
         this.active = true;
+    }
+    public Employees() {
     }
 }
