@@ -23,7 +23,7 @@ public interface CompanyRepository {
 
     void deleteCompany (int id);
 
-    void addEmployeeToCompany(int id, Employees employee) ;
+    //void addEmployeeToCompany(int id, Employees employee) ;
 
 
 
