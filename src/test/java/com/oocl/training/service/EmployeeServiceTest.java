@@ -2,7 +2,7 @@ package com.oocl.training.service;
 
 import com.oocl.training.exception.InvalidEmployeeException;
 import com.oocl.training.model.Employees;
-import com.oocl.training.repository.EmployeeRepository;
+import com.oocl.training.repository.EmployeeMemoryRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class EmployeeServiceTest {
 
     @Mock
-    private EmployeeRepository employeeRepository;
+    private EmployeeMemoryRepository employeeMemoryRepository;
 
     @InjectMocks
     private EmployeeService employeeService;
@@ -34,7 +34,7 @@ class EmployeeServiceTest {
         //Given
         Employees employee = new Employees(1,"oocl",22,"MALE",12000.0);
         Employees mockedEmployee = new Employees(1, employee.getName(), employee.getAge(), employee.getGender(), employee.getSalary());
-        Mockito.when(employeeRepository.addEmployee(Mockito.any(Employees.class))).thenReturn(employee);
+        Mockito.when(employeeMemoryRepository.addEmployee(Mockito.any(Employees.class))).thenReturn(employee);
         //When
         Employees addEmployee = employeeService.addEmployee(employee);
         //Then
@@ -76,7 +76,7 @@ class EmployeeServiceTest {
         Map<Integer, Employees> employees = new HashMap<>(Map.of(
                 1, new Employees(1, "John Smith", 32, "MALE", 5000.0),
                 2, new Employees(2, "Jane Johnson", 28, "FEMALE", 6000.0)));
-        Mockito.when(employeeRepository.getAllEmployees()).thenReturn(employees.values().stream().toList());
+        Mockito.when(employeeMemoryRepository.getAllEmployees()).thenReturn(employees.values().stream().toList());
         //When
         List<Employees> result = employeeService.getAllEmployees();
         //Then
@@ -89,7 +89,7 @@ class EmployeeServiceTest {
         Map<Integer, Employees> employees = new HashMap<>(Map.of(
                 1, new Employees(1, "John Smith", 32, "MALE", 5000.0),
                 2, new Employees(2, "Jane Johnson", 28, "FEMALE", 6000.0)));
-        Mockito.when(employeeRepository.getEmployeeById(1)).thenReturn(employees.get(1));
+        Mockito.when(employeeMemoryRepository.getEmployeeById(1)).thenReturn(employees.get(1));
         //When
 
         Employees result = employeeService.getEmployeeById(1);
@@ -107,7 +107,7 @@ class EmployeeServiceTest {
                 4, new Employees(4, "Emily Brown", 23, "FEMALE", 4500.0),
                 5, new Employees(5, "Michael Jones", 40, "MALE", 7000.0)
         ));
-        Mockito.when(employeeRepository.getEmployeesByPage(2,2)).thenReturn(List.of(employees.get(3),employees.get(4)));
+        Mockito.when(employeeMemoryRepository.getEmployeesByPage(2,2)).thenReturn(List.of(employees.get(3),employees.get(4)));
         //When
         List<Employees> result = employeeService.getEmployeesByPage(2,2);
         //Then
@@ -123,7 +123,7 @@ class EmployeeServiceTest {
                 new Employees(5, "Michael Jones", 40, "MALE", 7000.0)
         );
 
-        Mockito.when(employeeRepository.getEmployeesByGender("MALE")).thenReturn(employees);
+        Mockito.when(employeeMemoryRepository.getEmployeesByGender("MALE")).thenReturn(employees);
         //When
         List<Employees> result = employeeService.getEmployeesByGender("MALE");
         //Then
@@ -134,19 +134,19 @@ class EmployeeServiceTest {
     void delete_employee_successfully(){
         //Given
         Employees employee = new Employees(1,"oocl",22,"MALE",12000.0);
-        Mockito.when(employeeRepository.getEmployeeById(1)).thenReturn(employee);
+        Mockito.when(employeeMemoryRepository.getEmployeeById(1)).thenReturn(employee);
         //When
         employeeService.deleteEmployee(1);
         //Then
         assertFalse(employee.isActive());
-        Mockito.verify(employeeRepository,Mockito.times(1)).getEmployeeById(1);
-        Mockito.verify(employeeRepository,Mockito.times(1)).updateEmployee(1,employee);
+        Mockito.verify(employeeMemoryRepository,Mockito.times(1)).getEmployeeById(1);
+        Mockito.verify(employeeMemoryRepository,Mockito.times(1)).updateEmployee(1,employee);
 
     }
     @Test
     void throw_exception_when_delete_employee_not_exist(){
         //Given
-        Mockito.when(employeeRepository.getEmployeeById(1)).thenReturn(null);
+        Mockito.when(employeeMemoryRepository.getEmployeeById(1)).thenReturn(null);
         //When & Then
         InvalidEmployeeException Exception = assertThrows(InvalidEmployeeException.class, () -> employeeService.deleteEmployee(1));
         assertEquals("Employee with id 1 does not exist.", Exception.getMessage());
@@ -156,12 +156,12 @@ class EmployeeServiceTest {
         //Given
         Employees old_employee = new Employees(1,"oocl",22,"MALE",12000.0);
         Employees update_message = new Employees(1,null,80,null,13000.0);
-        Mockito.when(employeeRepository.getEmployeeById(1)).thenReturn(old_employee);
+        Mockito.when(employeeMemoryRepository.getEmployeeById(1)).thenReturn(old_employee);
         //When
         employeeService.updateEmployee(1,update_message);
         //Then
-        Mockito.verify(employeeRepository,Mockito.times(1)).getEmployeeById(1);
-        Mockito.verify(employeeRepository,Mockito.times(1)).updateEmployee(1,update_message);
+        Mockito.verify(employeeMemoryRepository,Mockito.times(1)).getEmployeeById(1);
+        Mockito.verify(employeeMemoryRepository,Mockito.times(1)).updateEmployee(1,update_message);
 
     }
 
