@@ -1,4 +1,4 @@
-package com.oocl.training.repository;
+package com.oocl.training.repository.company;
 
 import com.oocl.training.model.Company;
 import com.oocl.training.model.Employees;
@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 @Repository
-public class CompanyRepository {
-//    private final HashMap<Integer, Company> companyDb = new HashMap<>(Map.of(
+public class CompanyMemoryRepository {
+    //    private final HashMap<Integer, Company> companyDb = new HashMap<>(Map.of(
 //            1, new Company(1, "Acme Corporation", List.of(
 //                    new Employees(1, "John Smith", 32, "MALE", 5000.0),
 //                    new Employees(2, "Jane Johnson", 28, "FEMALE", 6000.0)
@@ -64,8 +64,8 @@ public class CompanyRepository {
         //List<Employees> employees = company.getEmployees();
         List<Employees> employees =null;
         employees.add(employee);
-        }
     }
+}
 
 
 
