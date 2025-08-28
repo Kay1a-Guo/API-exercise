@@ -44,7 +44,6 @@ public record EmployeeService(EmployeeRepository employeeRepository) {
         } else {
             emp.setActive(false);
             employeeRepository.updateEmployee(id, emp);
-
         }
     }
 
