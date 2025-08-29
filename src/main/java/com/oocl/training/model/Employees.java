@@ -87,10 +87,6 @@ public class Employees {
     }
 
 
-
-
-
-
     public Employees(int id, String name, int age, String gender, double salary) {
         this.id = id;
         this.name = name;

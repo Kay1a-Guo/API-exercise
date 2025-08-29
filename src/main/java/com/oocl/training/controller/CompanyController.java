@@ -1,8 +1,12 @@
 package com.oocl.training.controller;
 
+import com.oocl.training.controller.dto.EmployeeResponse;
+import com.oocl.training.controller.mapper.EmployeeMapper;
 import com.oocl.training.model.Company;
 import com.oocl.training.model.Employees;
 import com.oocl.training.service.CompanyService;
+import com.oocl.training.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
@@ -10,6 +14,9 @@ import java.util.*;
 @RestController
 @RequestMapping("/api/v1/companies")
 public record CompanyController(CompanyService companyService) {
+    @Autowired
+    public static EmployeeResponse employeeResponse;
+    private static final EmployeeMapper employeeMapper = new EmployeeMapper();
 
 
     // 添加公司
@@ -36,8 +43,9 @@ public record CompanyController(CompanyService companyService) {
     // 获取指定公司下的所有员工
     @GetMapping("/{id}/employees")
     @ResponseStatus(HttpStatus.OK)
-    public List<Employees> getEmployeesByCompany(@PathVariable int id) {
-        return companyService.getEmployeesByCompany(id);
+    public List<EmployeeResponse> getEmployeesByCompany(@PathVariable int id) {
+        //return companyService.getEmployeesByCompany(id);
+        return employeeMapper.toResponseList(companyService.getEmployeesByCompany(id));
     }
 
     // 更新公司名称

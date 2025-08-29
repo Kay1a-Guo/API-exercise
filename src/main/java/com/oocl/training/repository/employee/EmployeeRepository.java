@@ -23,6 +23,7 @@ public interface EmployeeRepository {
     List<Employees> getEmployeesByGender(String gender) ;
 
     void updateEmployee(int id, Employees updatedEmployee) ;
+
     List<Employees> getEmployeesByCompanyId (int id) ;
 }
 

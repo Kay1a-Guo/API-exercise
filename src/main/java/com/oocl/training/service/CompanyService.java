@@ -23,8 +23,6 @@ public class CompanyService {
 
 
 
-
-
     public void addCompany(@RequestBody Company company){
         companyRepository.addCompany(company);
 
