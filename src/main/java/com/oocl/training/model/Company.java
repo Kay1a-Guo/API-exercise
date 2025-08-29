@@ -10,12 +10,16 @@ import java.util.List;
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
+
+    public Company(Integer companyId) {
+        this.id = companyId;
+    }
     //private List<Employees> employees;
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

@@ -1,5 +1,6 @@
 package com.oocl.training.controller;
 
+import com.oocl.training.controller.dto.EmployeeRequest;
 import com.oocl.training.controller.dto.EmployeeResponse;
 import com.oocl.training.controller.mapper.EmployeeMapper;
 import com.oocl.training.model.Employees;
@@ -21,8 +22,9 @@ public class EmployeesController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public EmployeeResponse addEmployee(@RequestBody Employees employee) throws IllegalAccessException {
+    public EmployeeResponse addEmployee(@RequestBody EmployeeRequest request) throws IllegalAccessException {
         //return employeeService.addEmployee(employee);
+        Employees employee = employeeMapper.toEntity(request);
         return employeeMapper.toResponse(employeeService.addEmployee(employee));
     }
 
@@ -59,8 +61,10 @@ public class EmployeesController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateEmployee(@PathVariable int id, @RequestBody Employees updatedEmployee) {
-        employeeService.updateEmployee(id, updatedEmployee);
+    public void updateEmployee(@PathVariable int id, @RequestBody EmployeeRequest updatedEmployee) {
+        //employeeService.updateEmployee(id, updatedEmployee);
+        Employees employee = employeeMapper.toEntity(updatedEmployee);
+        employeeService.updateEmployee(id, employee);
     }
 
 

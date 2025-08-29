@@ -20,7 +20,8 @@ public class Employees {
 
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    //@ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     @JoinColumn(name = "company_id")
     @NotFound(action= NotFoundAction.IGNORE)
     private Company company;
