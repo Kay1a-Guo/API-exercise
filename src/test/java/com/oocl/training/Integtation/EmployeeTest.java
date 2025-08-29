@@ -24,15 +24,15 @@ public class EmployeeTest {
     @Autowired
     private EmployeeDbRepository employeeMemoryRepository;
 
-    @BeforeEach
-    public void setUp() {
-        employeeMemoryRepository.getAllEmployees().clear();
-        employeeMemoryRepository.addEmployee(new Employees(1, "John Smith", 32, "MALE", 5000.0));
-        employeeMemoryRepository.addEmployee(new Employees(2, "Jane Johnson", 28, "FEMALE", 6000.0));
-        employeeMemoryRepository.addEmployee(new Employees(3, "David Williams", 35, "MALE", 5500.0));
-        employeeMemoryRepository.addEmployee(new Employees(4, "Emily Brown", 23, "FEMALE", 4500.0));
-        employeeMemoryRepository.addEmployee(new Employees(5, "Michael Jones", 40, "MALE", 7000.0));
-    }
+//    @BeforeEach
+//    public void setUp() {
+//        employeeMemoryRepository.getAllEmployees().clear();
+//        employeeMemoryRepository.addEmployee(new Employees(1, "John Smith", 32, "MALE", 5000.0));
+//        employeeMemoryRepository.addEmployee(new Employees(2, "Jane Johnson", 28, "FEMALE", 6000.0));
+//        employeeMemoryRepository.addEmployee(new Employees(3, "David Williams", 35, "MALE", 5500.0));
+//        employeeMemoryRepository.addEmployee(new Employees(4, "Emily Brown", 23, "FEMALE", 4500.0));
+//        employeeMemoryRepository.addEmployee(new Employees(5, "Michael Jones", 40, "MALE", 7000.0));
+//    }
     @Test
     public void should_return_employees_when_get_all_employees_exist() throws Exception {
         //Given

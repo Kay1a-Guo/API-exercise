@@ -20,8 +20,7 @@ public class EmployeeService {
     }
 
     public Employees addEmployee(Employees employee) {
-        if (employee.getAge() < 18 || employee.getAge() > 65)
-            throw new InvalidEmployeeException("Employee age must be between 18 and 65.");
+
         if (employee.getAge() > 30 && employee.getSalary() < 20000.0)
             throw new InvalidEmployeeException("Employee older than 30 must have a salary of at least 20000.");
         employeeRepository.addEmployee(employee);

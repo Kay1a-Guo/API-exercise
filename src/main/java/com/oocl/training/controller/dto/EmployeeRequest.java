@@ -1,12 +1,25 @@
 package com.oocl.training.controller.dto;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
 public class EmployeeRequest {
 
     private String name;
+    @NotNull(message = "Age cannot be null")
+    @Min(value = 18, message = "Age should not be less than 18")
+    @Max(value = 65, message = "Age should be no more than 65")
     private Integer age;
     private String gender;
     private Double salary;
     private Integer companyId;
+    private boolean active;
+
+
+    public boolean isActive() {
+        return active;
+    }
 
     public EmployeeRequest() {
     }

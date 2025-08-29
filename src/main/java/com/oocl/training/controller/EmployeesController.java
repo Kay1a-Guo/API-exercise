@@ -4,6 +4,7 @@ import com.oocl.training.controller.dto.EmployeeRequest;
 import com.oocl.training.controller.dto.EmployeeResponse;
 import com.oocl.training.controller.mapper.EmployeeMapper;
 import com.oocl.training.model.Employees;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.oocl.training.service.EmployeeService;
@@ -22,7 +23,7 @@ public class EmployeesController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public EmployeeResponse addEmployee(@RequestBody EmployeeRequest request) throws IllegalAccessException {
+    public EmployeeResponse addEmployee(@Valid @RequestBody EmployeeRequest request) throws IllegalAccessException {
         //return employeeService.addEmployee(employee);
         Employees employee = employeeMapper.toEntity(request);
         return employeeMapper.toResponse(employeeService.addEmployee(employee));
