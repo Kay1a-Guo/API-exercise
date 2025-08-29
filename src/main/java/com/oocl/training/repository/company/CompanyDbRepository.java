@@ -2,9 +2,13 @@ package com.oocl.training.repository.company;
 
 import com.oocl.training.model.Company;
 import com.oocl.training.model.Employees;
+import com.oocl.training.repository.company.JpaCompanyRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Repository;
 
+import java.awt.print.Pageable;
 import java.util.List;
-
+@Repository
 public class CompanyDbRepository implements CompanyRepository {
     JpaCompanyRepository repository;
     public CompanyDbRepository(JpaCompanyRepository repository) {
@@ -17,7 +21,7 @@ public class CompanyDbRepository implements CompanyRepository {
 
     @Override
     public List<Company> getCompanies(int page, int size) {
-        return repository.findAll().subList((page-1)*size,page*size);
+        return repository.findAll(PageRequest.of(page - 1,size)).getContent();
     }
 
     @Override
@@ -27,8 +31,13 @@ public class CompanyDbRepository implements CompanyRepository {
 
     @Override
     public List<Employees> getEmployeesByCompany(int id) {
-        return repository.findById(id).orElse(null).getEmployees();
+        return null;
     }
+
+//    @Override
+//    public List<Employees> getEmployeesByCompany(int id) {
+//        return repository.findById(id).orElse(null).();
+//    }
 
     @Override
     public void updateCompany(int id, Company updatedCompany) {
@@ -42,8 +51,8 @@ public class CompanyDbRepository implements CompanyRepository {
 
     }
 
-    @Override
-    public void addEmployeeToCompany(int id, Employees employee) {
-
-    }
+//    @Override
+//    public void addEmployeeToCompany(int id, Employees employee) {
+//
+//    }
 }

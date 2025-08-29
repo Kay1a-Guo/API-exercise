@@ -1,4 +1,4 @@
-package com.oocl.training.repository;
+package com.oocl.training.repository.employee;
 
 import com.oocl.training.model.Employees;
 import org.springframework.stereotype.Repository;
@@ -50,12 +50,12 @@ public class EmployeeMemoryRepository {
                 .collect(Collectors.toList());
     }
 
-
-
     public void updateEmployee(int id, Employees updatedEmployee) {
         updatedEmployee.setId(id);
         employees.put(id, updatedEmployee);
     }
+
+
 }
 
 

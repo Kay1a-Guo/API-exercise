@@ -2,9 +2,9 @@ package com.oocl.training.service;
 
 import com.oocl.training.model.Company;
 import com.oocl.training.model.Employees;
-import com.oocl.training.repository.CompanyRepository;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
+import com.oocl.training.repository.company.CompanyDbRepository;
+import com.oocl.training.repository.company.CompanyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -12,51 +12,60 @@ import java.util.List;
 
 @Service
 public class CompanyService {
-    public CompanyService(CompanyRepository repository) {
+    private final CompanyRepository companyRepository;
+
+    public CompanyService(CompanyDbRepository companyDbRepository) {
+        this.companyRepository = companyDbRepository;
     }
 
+    @Autowired
+    private EmployeeService employeeService;
+
+
+
+
+
     public void addCompany(@RequestBody Company company){
-        CompanyRepository repository = new CompanyRepository();
-        repository.addCompany(company);
+        companyRepository.addCompany(company);
+
     }
 
     public List<Company> getCompanies(int page, int size){
-        CompanyRepository repository = new CompanyRepository();
-        return repository.getCompanies(page, size);
+
+        return companyRepository.getCompanies(page, size);
     }
 
     public Company getCompanyById(int id){
-        CompanyRepository repository = new CompanyRepository();
-        return repository.getCompanyById(id);
+        return companyRepository.getCompanyById(id);
     }
 
     public List<Employees> getEmployeesByCompany (int id){
-        CompanyRepository repository = new CompanyRepository();
-        if (repository.getCompanyById(id) == null) {
+
+        if (employeeService.getEmployeesByCompany(id) == null) {
             throw new IllegalArgumentException("Company with ID " + id + " does not exist.");
         }
-        return repository.getEmployeesByCompany(id);
+        return employeeService.getEmployeesByCompany(id);
     }
 
     public void updateCompany (int id, Company updatedCompany){
-        CompanyRepository repository = new CompanyRepository();
-        if (repository.getCompanyById(id) == null) {
+
+        if (companyRepository.getCompanyById(id) == null) {
             throw new IllegalArgumentException("Company with ID " + id + " does not exist.");
         }
-        repository.updateCompany(id, updatedCompany);
+        companyRepository.updateCompany(id, updatedCompany);
     }
 
     public void deleteCompany (int id){
-        CompanyRepository repository = new CompanyRepository();
-        repository.deleteCompany(id);
+
+        companyRepository.deleteCompany(id);
     }
 
-    public void addEmployeeToCompany(int id, Employees employee) {
-        CompanyRepository repository = new CompanyRepository();
-        if (repository.getCompanyById(id) == null) {
-            throw new IllegalArgumentException("Company with ID " + id + " does not exist.");
-        }
-        repository.addEmployeeToCompany(id, employee);
-    }
+//     public void addEmployeeToCompany(int id, Employees employee) {
+//
+//         if (companyRepository.getCompanyById(id) == null) {
+//             throw new IllegalArgumentException("Company with ID " + id + " does not exist.");
+//         }
+//         companyRepository.addEmployeeToCompany(id, employee);
+//     }
 
 }

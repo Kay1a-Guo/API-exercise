@@ -48,4 +48,10 @@ public record EmployeesController(EmployeeService employeeService) {
     public void updateEmployee(@PathVariable int id, @RequestBody Employees updatedEmployee) {
         employeeService.updateEmployee(id, updatedEmployee);
     }
+
+    @GetMapping("/{id}/")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Employees> getEmployeesByCompany(@PathVariable int id) {
+        return employeeService.getEmployeesByCompany(id);
+    }
 }

@@ -3,9 +3,9 @@ package com.oocl.training.service;
 
 import com.oocl.training.exception.InvalidEmployeeException;
 import com.oocl.training.model.Employees;
-import com.oocl.training.repository.EmployeeDbRepository;
+import com.oocl.training.repository.employee.EmployeeDbRepository;
 
-import com.oocl.training.repository.EmployeeRepository;
+import com.oocl.training.repository.employee.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -63,6 +63,14 @@ public class EmployeeService {
         } else {
             employeeRepository.updateEmployee(id, updatedEmployee);
         }
+    }
+
+    public List<Employees> getEmployeesByCompany (int id){
+
+        if (employeeRepository.getEmployeesByCompanyId(id) == null) {
+            throw new IllegalArgumentException("Company with ID " + id + " does not exist.");
+        }
+        return employeeRepository.getEmployeesByCompanyId(id);
     }
 
 }

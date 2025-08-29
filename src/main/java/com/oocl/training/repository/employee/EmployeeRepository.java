@@ -1,4 +1,4 @@
-package com.oocl.training.repository;
+package com.oocl.training.repository.employee;
 
 import com.oocl.training.model.Employees;
 import org.springframework.stereotype.Repository;
@@ -23,6 +23,7 @@ public interface EmployeeRepository {
     List<Employees> getEmployeesByGender(String gender) ;
 
     void updateEmployee(int id, Employees updatedEmployee) ;
+    List<Employees> getEmployeesByCompanyId (int id) ;
 }
 
 

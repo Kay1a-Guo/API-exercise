@@ -21,7 +21,7 @@ public record CompanyController(CompanyService companyService) {
 
     // 获取所有公司（分页）
     @GetMapping
-    public List<Company> getCompanies(@RequestParam(defaultValue = "0") int page,
+    public List<Company> getCompanies(@RequestParam(defaultValue = "1") int page,
                                       @RequestParam(defaultValue = "5") int size) {
         return companyService.getCompanies(page, size);
     }
@@ -55,8 +55,8 @@ public record CompanyController(CompanyService companyService) {
     }
 
     // 添加员工到公司
-    @PostMapping("/{id}/employees")
-    public void addEmployeeToCompany(@PathVariable int id, @RequestBody Employees employee) {
-        companyService.addEmployeeToCompany(id, employee);
-    }
+//    @PostMapping("/{id}/employees")
+//    public void addEmployeeToCompany(@PathVariable int id, @RequestBody Employees employee) {
+//        companyService.addEmployeeToCompany(id, employee);
+//    }
 }

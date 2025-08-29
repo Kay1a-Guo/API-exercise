@@ -1,4 +1,4 @@
-package com.oocl.training.repository;
+package com.oocl.training.repository.employee;
 
 import com.oocl.training.model.Employees;
 import org.springframework.stereotype.Repository;
@@ -38,5 +38,10 @@ public class EmployeeDbRepository implements EmployeeRepository {
     @Override
     public void updateEmployee(int id, Employees updatedEmployee) {
         repository.save(updatedEmployee);
+    }
+
+    @Override
+    public List<Employees> getEmployeesByCompanyId(int id) {
+        return repository.getEmployeesByCompanyId(id);
     }
 }

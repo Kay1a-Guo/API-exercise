@@ -1,6 +1,8 @@
 package com.oocl.training.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @Entity
@@ -14,6 +16,25 @@ public class Employees {
     private int age;
     private String gender;
     private double salary;
+    private boolean active;
+
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    @NotFound(action= NotFoundAction.IGNORE)
+    private Company company;
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+
+
 
     public int getId() {
         return id;
@@ -65,7 +86,8 @@ public class Employees {
         this.active = active;
     }
 
-    private boolean active;
+
+
 
 
 

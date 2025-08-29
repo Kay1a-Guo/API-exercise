@@ -2,7 +2,7 @@ package com.oocl.training.service;
 
 import com.oocl.training.exception.InvalidEmployeeException;
 import com.oocl.training.model.Employees;
-import com.oocl.training.repository.EmployeeDbRepository;
+import com.oocl.training.repository.employee.EmployeeDbRepository;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

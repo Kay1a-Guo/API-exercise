@@ -14,6 +14,7 @@ public class Company {
     private String name;
     //private List<Employees> employees;
 
+
     public int getId() {
         return id;
     }
@@ -48,5 +49,8 @@ public class Company {
     public Company(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+    public Company(){
+
     }
 }

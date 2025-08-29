@@ -8,4 +8,6 @@ import java.util.List;
 public interface JpaEmployeeRepository extends JpaRepository<Employees,Integer> {
     List<Employees> getEmployeeByGender(String gender);
 
+    List<Employees> getEmployeesByCompanyId(int companyId);
+
 }
