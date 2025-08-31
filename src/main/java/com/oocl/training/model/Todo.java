@@ -2,15 +2,21 @@ package com.oocl.training.model;
 
 public class Todo {
     private int id;
-    private String status;
-    private String title;
-    public Todo(int id, String title, String status) {
-        this.id = id;
-        this.title = title;
-        this.status = status;
-    }
-    public Todo(){
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public String getTitle() {
@@ -21,19 +27,17 @@ public class Todo {
         this.title = title;
     }
 
-    public String getStatus() {
-        return status;
+    private boolean status;
+    private String title;
+
+    public Todo(){
+
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public Todo(int id, boolean status, String title) {
         this.id = id;
+        this.status = true;
+        this.title = title;
     }
 }
