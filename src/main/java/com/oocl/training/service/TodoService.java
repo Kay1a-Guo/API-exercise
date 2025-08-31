@@ -23,7 +23,11 @@ public class TodoService {
     }
 
     public List<Todo> getAllTodo() {
-        return todoRepository.getAllTodo();
+        return todoRepository.getAllTodo()
+                .stream()
+                .filter(Todo::isStatus)
+                .toList();
+
     }
 
     public List<Todo> getTodosByPage(int page, int size) {

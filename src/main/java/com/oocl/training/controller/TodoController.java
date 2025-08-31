@@ -1,6 +1,7 @@
 package com.oocl.training.controller;
 
 import com.oocl.training.controller.dto.TodoRequest;
+import com.oocl.training.controller.dto.TodoResponse;
 import com.oocl.training.controller.mapper.TodoMapper;
 import com.oocl.training.model.Todo;
 import com.oocl.training.repository.todo.TodoRepository;
@@ -23,20 +24,20 @@ public class TodoController {
     }
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Todo> getAllTodos() {
+    public List<TodoResponse> getAllTodos() {
         return todoMapper.toResponseList(todoService.getAllTodo());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Todo addTodo(@Valid @RequestBody TodoRequest request) {
+    public TodoResponse addTodo(@Valid @RequestBody TodoRequest request) {
         Todo todo = todoMapper.toEntity(request);
         return todoMapper.toResponse(todoService.addTodo(todo));
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Todo getTodoById(@PathVariable int id) {
+    public TodoResponse getTodoById(@PathVariable int id) {
         return todoMapper.toResponse(todoService.getTodoById(id));
     }
 
