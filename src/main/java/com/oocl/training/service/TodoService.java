@@ -25,9 +25,7 @@ public class TodoService {
     public List<Todo> getAllTodo() {
         return todoRepository.getAllTodo()
                 .stream()
-                .filter(Todo::isStatus)
                 .toList();
-
     }
 
     public List<Todo> getTodosByPage(int page, int size) {
@@ -36,21 +34,22 @@ public class TodoService {
 
     public void deleteTodoById(Integer id) {
         Todo todo = todoRepository.getTodoById(id);
-        if (todo == null || !todo.isStatus()) {
+        if (todo == null || !todo.isCompleted()) {
             throw new RuntimeException("Todo with id " + id + " does not exist.");
         }else {
-            todo.setStatus(false);
-            todoRepository.updateTodo(id, todo);
+            todoRepository.deleteTodo(id);
         }
     }
 
-    public void updateTodo(Integer id, Todo updatedTodo) {
+    public Todo updateTodoCompleted(Integer id) {
         Todo todo = todoRepository.getTodoById(id);
-        if (todo == null || !todo.isStatus()) {
+        if (todo == null) {
             throw new RuntimeException("Todo with id " + id + " does not exist.");
-        } else {
-            todoRepository.updateTodo(id, updatedTodo);
         }
+        // 只更新 completed 字段
+        todo.setCompleted(!todo.isCompleted());
+        return todo;
+        //todoRepository.updateTodo(id, todo);
     }
 
 }

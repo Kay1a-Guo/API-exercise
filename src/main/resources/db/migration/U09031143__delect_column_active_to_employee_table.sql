@@ -1,0 +1,11 @@
+ALTER TABLE employee
+DROP COLUMN active;
+
+
+
+
+
+
+
+
+

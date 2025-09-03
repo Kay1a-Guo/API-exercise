@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController()
 @RequestMapping("/api/v1/todos")
 public class TodoController {
@@ -24,8 +24,14 @@ public class TodoController {
     }
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<TodoResponse> getAllTodos() {
-        return todoMapper.toResponseList(todoService.getAllTodo());
+    public List<TodoResponse> getTodos(
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer pageSize) {
+        if (page != null && pageSize != null) {
+            return todoMapper.toResponseList(todoService.getTodosByPage(page, pageSize));
+        } else {
+            return todoMapper.toResponseList(todoService.getAllTodo());
+        }
     }
 
     @PostMapping
@@ -49,9 +55,9 @@ public class TodoController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateTodo(@PathVariable int id, @Valid @RequestBody TodoRequest request) {
-        Todo todo = todoMapper.toEntity(request);
-        todoService.updateTodo(id, todo);
+    public void updateTodo(@PathVariable int id) {
+//        Todo todo = todoMapper.toEntity(request);
+        todoService.updateTodoCompleted(id);
     }
 
 }

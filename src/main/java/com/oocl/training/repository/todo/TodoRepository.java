@@ -13,7 +13,9 @@ public interface TodoRepository {
 
     List<Todo> getTodosByPage(int page, int size);
 
-    void updateTodo(Integer id, Todo updatedTodo);
+    void updateTodo(Integer id);
+
+    void deleteTodo(Integer id);
 
 
 }

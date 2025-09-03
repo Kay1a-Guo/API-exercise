@@ -17,12 +17,12 @@ public class Todo {
         this.id = id;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isCompleted() {
+        return completed;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     public String getTitle() {
@@ -33,7 +33,7 @@ public class Todo {
         this.title = title;
     }
 
-    private boolean status;
+    private boolean completed;
     private String title;
 
     public Todo(){
@@ -41,9 +41,9 @@ public class Todo {
     }
 
 
-    public Todo(int id, boolean status, String title) {
+    public Todo(int id, boolean completed, String title) {
         this.id = id;
-        this.status = true;
+        this.completed = true;
         this.title = title;
     }
 }

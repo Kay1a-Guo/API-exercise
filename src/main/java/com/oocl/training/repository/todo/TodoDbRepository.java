@@ -33,8 +33,22 @@ public class TodoDbRepository implements TodoRepository {
     }
 
     @Override
-    public void updateTodo(Integer id, Todo updatedTodo) {
-        jpaTodoRepository.save(updatedTodo);
+    public void updateTodo(Integer id) {
+        Todo todo = jpaTodoRepository.findById(id).orElse(null);
+        if (todo != null) {
+            todo.setCompleted(!todo.isCompleted());
+            jpaTodoRepository.save(todo);
+        }
+    }
+
+//    @Override
+//    public void updateTodo(Integer id, Todo updatedTodo) {
+//        jpaTodoRepository.save(updatedTodo);
+//    }
+
+    @Override
+    public void deleteTodo(Integer id) {
+        jpaTodoRepository.deleteById(id);
     }
 
 

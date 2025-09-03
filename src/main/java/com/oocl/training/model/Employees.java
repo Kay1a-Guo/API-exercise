@@ -21,7 +21,7 @@ public class Employees {
 
 
     //@ManyToOne(fetch = FetchType.LAZY)
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     @NotFound(action= NotFoundAction.IGNORE)
     private Company company;
